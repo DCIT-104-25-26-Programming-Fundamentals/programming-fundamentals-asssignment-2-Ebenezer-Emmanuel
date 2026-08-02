@@ -73,3 +73,123 @@
 #include <cmath>
 using namespace std;
 
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+// Function prototypes
+void displayMenu();
+double addValues(double x, double y);
+double subtractValues(double x, double y);
+double multiplyValues(double x, double y);
+double divideValues(double x, double y);
+int modulusValues(int x, int y);
+double powerValue(double base, double exp);
+
+int main() {
+    int choice = 0;
+
+    // Set fixed decimal formatting to 2 decimal places
+    cout << fixed << setprecision(2);
+
+    do {
+        displayMenu();
+        cin >> choice;
+
+        if (choice >= 1 && choice <= 4) {
+            double num1, num2;
+            cout << "Enter first number : ";
+            cin >> num1;
+            cout << "Enter second number: ";
+            cin >> num2;
+
+            if (choice == 1) {
+                cout << "Result: " << num1 << " + " << num2 << " = " << addValues(num1, num2) << endl;
+            } else if (choice == 2) {
+                cout << "Result: " << num1 << " - " << num2 << " = " << subtractValues(num1, num2) << endl;
+            } else if (choice == 3) {
+                cout << "Result: " << num1 << " * " << num2 << " = " << multiplyValues(num1, num2) << endl;
+            } else if (choice == 4) {
+                if (num2 == 0) {
+                    cout << "Error: Cannot divide by zero." << endl;
+                } else {
+                    cout << "Result: " << num1 << " / " << num2 << " = " << divideValues(num1, num2) << endl;
+                }
+            }
+        } 
+        else if (choice == 5) {
+            int num1, num2;
+            cout << "Enter first number : ";
+            cin >> num1;
+            cout << "Enter second number: ";
+            cin >> num2;
+
+            if (num2 == 0) {
+                cout << "Error: Cannot divide by zero." << endl;
+            } else {
+                cout << "Result: " << num1 << " % " << num2 << " = " << modulusValues(num1, num2) << endl;
+            }
+        } 
+        else if (choice == 6) {
+            double base, exp;
+            cout << "Enter base number    : ";
+            cin >> base;
+            cout << "Enter exponent number: ";
+            cin >> exp;
+
+            cout << "Result: " << base << " ^ " << exp << " = " << powerValue(base, exp) << endl;
+        } 
+        else if (choice == 7) {
+            cout << "Goodbye!" << endl;
+        } 
+        else {
+            cout << "Invalid selection. Please enter a number from 1 to 7." << endl;
+        }
+
+        cout << endl;
+
+    } while (choice != 7);
+
+    return 0;
+}
+
+// Function to print the main menu screen
+void displayMenu() {
+    cout << "============================" << endl;
+    cout << "       SIMPLE CALCULATOR    " << endl;
+    cout << "============================" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Modulus" << endl;
+    cout << "6. Exponentiation" << endl;
+    cout << "7. Quit" << endl;
+    cout << "Select an operation (1-7): ";
+}
+
+// Operation functions
+double addValues(double x, double y) {
+    return x + y;
+}
+
+double subtractValues(double x, double y) {
+    return x - y;
+}
+
+double multiplyValues(double x, double y) {
+    return x * y;
+}
+
+double divideValues(double x, double y) {
+    return x / y;
+}
+
+int modulusValues(int x, int y) {
+    return x % y;
+}
+
+double powerValue(double base, double exp) {
+    return pow(base, exp);
+}

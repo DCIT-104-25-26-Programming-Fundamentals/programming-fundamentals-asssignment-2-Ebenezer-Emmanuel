@@ -51,3 +51,97 @@
 #include <iostream>
 using namespace std;
 
+#include <iostream>
+using namespace std;
+
+// Function prototypes
+void printFibonacci(int n);
+bool isFibonacci(int num);
+
+int main() {
+    int choice;
+
+    cout << "=== Fibonacci Program Menu ===" << endl;
+    cout << "1. Display the first N terms" << endl;
+    cout << "2. Check if a number is in the sequence" << endl;
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
+
+    if (choice == 1) {
+        int n;
+        cout << "How many terms? ";
+        cin >> n;
+
+        // Validation for positive integer
+        if (n <= 0) {
+            cout << "Error: Please enter a positive integer." << endl;
+        } else {
+            printFibonacci(n);
+        }
+    } 
+    else if (choice == 2) {
+        int num;
+        cout << "Enter a number to check: ";
+        cin >> num;
+
+        if (num < 0) {
+            cout << num << " is NOT a Fibonacci number." << endl;
+        } else if (isFibonacci(num)) {
+            cout << num << " is a Fibonacci number." << endl;
+        } else {
+            cout << num << " is NOT a Fibonacci number." << endl;
+        }
+    } 
+    else {
+        cout << "Invalid choice." << endl;
+    }
+
+    return 0;
+}
+
+// PART A: Prints the first N terms using an iterative loop
+void printFibonacci(int n) {
+    long long first = 0;
+    long long second = 1;
+
+    cout << "Fibonacci sequence: ";
+
+    for (int i = 0; i < n; i++) {
+        if (i == 0) {
+            cout << first;
+        } else if (i == 1) {
+            cout << " " << second;
+        } else {
+            long long next = first + second;
+            cout << " " << next;
+            first = second;
+            second = next;
+        }
+    }
+    cout << endl;
+}
+
+// PART B: Iteratively generates Fibonacci numbers to check membership
+bool isFibonacci(int num) {
+    long long first = 0;
+    long long second = 1;
+
+    // Handle base values early
+    if (num == 0 || num == 1) {
+        return true;
+    }
+
+    long long next = first + second;
+
+    // Loop until we reach or exceed the target number
+    while (next <= num) {
+        if (next == num) {
+            return true;
+        }
+        first = second;
+        second = next;
+        next = first + second;
+    }
+
+    return false;
+}

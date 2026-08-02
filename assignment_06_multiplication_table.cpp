@@ -57,3 +57,78 @@
 #include <iostream>
 using namespace std;
 
+#include <iostream>
+using namespace std;
+
+// Function prototypes
+void printSingleTable(int num);
+void printAllTables(int n);
+
+int main() {
+    int choice;
+
+    cout << "=== Multiplication Table Generator ===" << endl;
+    cout << "1. Print a single multiplication table" << endl;
+    cout << "2. Print multiplication tables from 1 to N" << endl;
+    cout << "Enter your choice (1 or 2): ";
+    cin >> choice;
+
+    if (choice == 1) {
+        int num;
+        cout << "\nEnter a number: ";
+        cin >> num;
+
+        // Input validation for positive integer
+        if (num <= 0) {
+            cout << "Error: Number must be a positive integer." << endl;
+        } else {
+            printSingleTable(num);
+        }
+    } 
+    else if (choice == 2) {
+        int n;
+        cout << "\nEnter N (1 to N): ";
+        cin >> n;
+
+        // Input validation for positive integer
+        if (n <= 0) {
+            cout << "Error: Number must be a positive integer." << endl;
+        } else {
+            printAllTables(n);
+        }
+    } 
+    else {
+        cout << "Error: Invalid choice selection." << endl;
+    }
+
+    return 0;
+}
+
+// PART A: Prints a single multiplication table from 1 to 12
+void printSingleTable(int num) {
+    cout << "\nMultiplication Table for " << num << ":" << endl;
+    for (int i = 1; i <= 12; i++) {
+        cout << num << "  x  " << i;
+        
+        // Slight padding adjustment so double-digit multipliers align nicely
+        if (i < 10) {
+            cout << "  =  ";
+        } else {
+            cout << " =  ";
+        }
+        
+        cout << (num * i) << endl;
+    }
+}
+
+// PART B: Prints all multiplication tables from 1 up to N
+void printAllTables(int n) {
+    for (int i = 1; i <= n; i++) {
+        printSingleTable(i);
+        
+        // Print a separator line between tables
+        if (i < n) {
+            cout << "---------------------------" << endl;
+        }
+    }
+}
